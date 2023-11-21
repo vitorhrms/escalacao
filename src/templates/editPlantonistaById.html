@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{plantonist['nome']}}</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/buttons.css') }}">
+
+</head>
+{% extends 'indexEdit.html' %}
+{%block body %}
+<div id="cadastro">
+    <div id="cadastroForm">
+        <div id="tittle">
+            <p>EDITAR PLANTONISTAS:</p>
+        </div>
+        <div id="form-cadastros">
+            <div class="form-content">
+                <form action="{{url_for('escala.editPlantonistaByID', plantID=plantID)}}", method="post">
+                    <label for="team">Equipe:</label>
+                    <select name="team" id="teamname" >
+                        {% for team in allTeams %}
+                            <option id="removeteam" value="{{team[0]}}">{{team[1]}}</option>
+                        {% endfor %}
+                    </select><br>
+                        <label for="name">Nome:</label>
+                        <input class="addplantonistainput1" type="text" id="name" name="name" placeholder="Nome do plantonista" value="{{plantonist['nome']}}" required><br>
+
+                        <label for="email">E-mail:</label>
+                        <input class="addplantonistainput2" type="email" id="email" name="email", placeholder="E-mail do plantonista" value="{{plantonist['email']}}" required><br>
+                        
+                        <label for="cellphone">Celular:</label>
+                        <input class="addplantonistainput3" type="text" id="cellphone" name="cellphone", placeholder="Celular do plantonista" value="{{plantonist['telefone']}}" required><br>
+                    <input class="buttons" id="cadastrarPlantonista" type="submit" value="Salvar" onclick="saveOption()"/>
+                </form>
+            </div>
+        </div>
+</div>
+</div>
+<script>
+        
+    var selectedTeam = document.getElementById("teamname");
+        const $select = selectedTeam;
+        $select.value = "{{teamID}}"
+        
+
+
+    function saveOption(){
+        $.ajax({
+            url: '{{ url_for("escala.editPlantonistaByID", plantID=plantID) }}',
+            type: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: 
+            JSON.stringify({ "newEscala": optionValues }),
+
+            success: function (response) {
+
+                document.location.href="{{url_for('escala.editPlantonista', teamID=teamID)}}"
+            },
+            error: function (response) {
+            }
+        });
+    };
+</script>
+{%endblock %}
+</html>
+

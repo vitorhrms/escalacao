@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Remove</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/buttons.css') }}">
+
+
+</head>
+
+{% extends 'indexEdit.html' %}
+{%block body %}
+    <h1 id="header">{{ team }}</h1>
+
+<div id="editPlantonists">
+    <div id="editFormPlantonists">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <table>
+            <thead>
+                <tr>
+                    <td style="border-top-left-radius: 30px";>Equipe</td>
+                    <td></td>
+                    <td style="border-top-right-radius: 30px;"></td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for teams in allTeams %}
+                <tr>
+                    <td><p>{{ teams[1] }}</p></td> 
+                    <td class="tdWhite"></td>
+                    <td>
+                        <form id="formRemove" action="" method="post">
+                            <input  style="display:none"  value = "{{ teams[0] }}", name="teamID">
+                            <button  class="buttons">Remover</button>
+                        </form>
+                    </td>
+                {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{%endblock %}
+<script>
+
+$(document).ready(function()
+    {
+      $("tr:odd").css({
+        "background-color":"#000",
+        "color":"#fff"});
+    });
+</script>
+</html>

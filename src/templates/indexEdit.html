@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dropdown.css') }}">
+</head>
+
+<body>
+    <div id="container">
+        <nav>
+            <ul class="menu">
+                <a href="{{ url_for('index') }}">
+                    <img id="Logo" src="/static/img/logo.png" alt="logo">
+                </a>
+                <li id="masterMenu"><a href="#">Editar Escalas</a>
+                    <ul>
+                        {% for team in allTeams %}
+                        <li><a href="{{url_for('escala.editEscalation', teamID=team[0])}}"> {{team[1]}} </a></li>
+                        {% endfor %}
+                    </ul>        
+                </li>
+                <li id="masterMenu"><a href="#">Editar plantonistas</a>
+                    <ul>
+                        {% for team in allTeams %}
+                        <li><a href="{{ url_for('escala.editPlantonista', teamID=team[0])}}"> {{team[1]}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li id="masterMenu"><a href="#">Cadastros</a>
+                    <ul>
+                        <li><a href="{{ url_for('add.addplantonista')}}">+ plantonista</a></li>
+                        <li><a href="{{ url_for('add.addequipe')}}">+ equipe</a></li>
+                        <li><a href="{{ url_for('escala.removeTeams')}}">- equipe</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    {%block body %}{%endblock%}
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+body{
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    background-color: #ffffff;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    margin: 0;
+}
+h1 {
+    font-size: 35px;
+}
+#Logo{
+    position: absolute;
+    display:block;
+    margin: 10px 50px 15px 0px;
+}
+a {
+    display: block;
+    padding: 25px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
+    text-shadow: 1px 0px rgba(0, 0, 0, 0.4);
+    color: #686f77;
+    letter-spacing: .2em;
+    text-decoration: none;
+    transition: color 200ms;
+    transform-style: preserve-3d;
+}
+
+
+nav a {
+    display: block;
+    padding:0 10px;
+    color:rgb(48, 48, 48);
+    font-size: 200%;
+    line-height: 60px;
+    text-decoration:none;
+}
+
+.menu{
+    list-style:none;
+    border-bottom:1px solid #c0c0c0;
+    float:left;
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+    min-width: 535px;
+    background-color: #ffffff;
+    position: relative;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+    padding-inline-start: initial;
+}
+.menu:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .5;
+}
+
+.menu ul {
+    font-family: Arial, Verdana;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+}
+.menu li {
+    display: inline-block;
+
+}
+
+#masterMenu {
+    margin: 5px auto 5px 10px;
+}
+.menu ul li {
+    display: block;
+    position: relative;
+    float: left;
+}
+.menu li ul {
+    display: none;
+}
+.menu ul li a {
+    display: block;
+    text-decoration: none;
+    color: #3b3b3b;
+    border-top: 1px solid #ffffff;
+    padding: 5px 15px 5px 15px;
+    background: #1e7c9a;
+    margin-left: 1px;
+    white-space: nowrap;
+    font-size: 160%;
+}
+.menu ul li a:hover {
+    background: #ffffff;
+}
+.menu li:hover ul {
+    display: block;
+    position: absolute;
+}
+.menu li:hover li {
+    float: none;
+    font-size: 11px;
+}
+.menu li:hover a { background: #f5f5f5; }
+.menu li:hover li a:hover {
+    background: #e6e6e6;
+}
+
+.menu li a:hover{
+    background:#e6e6e6;
+    color:#3b3b3b;
+}
+
+#container {
+    height: 70px;
+}
+

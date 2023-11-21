@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{team}}</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/buttons.css') }}">
+
+
+    <script>
+        function goToEdit(plantonistId) {
+        window.location.href="{{ url_for('escala.editPlantonistaByID', plantID='IDPLACEHOLDER')}}".replace('IDPLACEHOLDER', plantonistId);
+    }
+    </script>
+
+</head>
+
+{% extends 'indexEdit.html' %}
+{%block body %}
+    <h1 id="header">{{ team }}</h1>
+
+<div id="editEditPlantonists">
+    <div id="editFormPlantonists">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <table>
+            <thead>
+                <tr>
+                    <td style="border-top-left-radius: 30px;">Nome</td>
+                    <td>Telefone</td>
+                    <td>Email</td>
+                    <td></td>
+                    <td style="border-top-right-radius: 30px;"></td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for plantonist in allPlantonists %}
+                <tr>
+                <td class="colName"><p>{{plantonist['nome']}}</p></td> 
+                <td class="colTel">
+                    ({{plantonist['telefone'][0:2]}}){{plantonist['telefone'][2:7]}}-{{plantonist['telefone'][7:]}}
+                </td> 
+                    <td class="colEmail">{{plantonist['email']}}</td>
+                    <td class="tdWhite"></td>
+                    <td>
+                        <button class="buttons" id="buttonEdit" onclick='goToEdit({{plantonist["idplantonista"]}});'>Editar</button>
+                        <form action="" method="post">
+                            <input  style="display:none"  value = "{{plantonist['idplantonista']}}", name="plantid">
+                            <button  class="buttons" id="buttonRemove">Remover</button>
+                        </form>
+                    </td>
+                {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{%endblock %}
+<script>
+
+$(document).ready(function()
+    {
+      $("tr:odd").css({
+        "background-color":"#000",
+        "color":"#fff"});
+    });
+</script>
+</html>

@@ -1,0 +1,99 @@
+.botao{
+    width: auto;
+    margin-left: 140px;    
+}
+
+.cadastroFormEscalation{
+    justify-content: center;
+}
+
+.buttons{
+    padding: 8px 16px;
+    background-color: #E00000;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 0.03em;
+    border: 1px solid #E00000;
+    border-radius: 4px;
+    margin: 5px 0;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#buttonMove{
+    position: absolute;
+    margin-bottom: 80px;
+    border-radius: 4px;
+}
+
+#buttonMove2{
+    margin: 30px 15px;
+    border-radius: 4px;
+}
+
+#saveButton{
+    display: initial;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background-color:rgb(255, 255, 255);
+    color: #E00000;
+}
+
+#btnUserMoveUp{
+    position: absolute;
+    margin-left: 817px;
+    margin-bottom: 80px;
+    border-radius: 4px;
+    width: max-content;
+}
+
+#btnUserMoveDown{
+    position: absolute;
+    margin-left: 817px;
+    border-radius: 4px;
+    width: max-content;
+}
+#buttonEdit{
+
+    width: 97px;
+    background-color:rgb(255, 255, 255);
+    color: #E00000;
+}
+
+
+#cadastrarPlantonista{
+    margin: 10px 0 0 130px;
+    background-color: rgb(255,255,255);
+    color: #E00000;
+}
+#cadastrarEquipe{
+    margin: 10px 0 0 350px;
+    background-color: rgb(255,255,255);
+    color: #E00000;
+}
+
+
+.img-arrow{
+    margin-left: 8px;
+}
+
+.img-arrow2{
+    margin-right: 8px;
+    transform: rotate(180deg);
+}
+
+.img-arrow-up{
+    margin-right: 8px;
+    transform: rotate(-90deg);
+}
+
+.img-arrow-down{
+    margin-right: 8px;
+    transform: rotate(90deg);
+}
+
+#formRemove{
+    display: inline-block;
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{team}}</title>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/buttons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" href="js/jquery-1.11.3.min.js">
+        function moveUp(){
+                var selected = $("#inEscala").find(":selected");
+                var before = selected.prev();
+                if (before.length > 0)
+                    selected.detach().insertBefore(before);
+        };
+        
+        function moveDown(){
+                var selected = $("#inEscala").find(":selected");
+                var next = selected.next();
+                if (next.length > 0)
+                    selected.detach().insertAfter(next);
+        };
+        
+        
+        function saveOption(){
+            let selectElement = document.querySelectorAll('[name=inEscala]');
+            let optionValues = [...selectElement[0].options].map(o => o.value)
+        
+            $.ajax({
+                url: '{{ url_for("escala.editEscalation", teamID=teamID) }}',
+                type: 'POST',
+                contentType: 'application/json',
+                dataType: 'json',
+                data: 
+                JSON.stringify({ "newEscala": optionValues }),
+        
+                success: function (response) {
+                    
+                    document.location.href="{{url_for('escala.getEscalation', teamID=teamID)}}"
+                },
+                error: function (response) {
+                }
+            });
+        
+        };
+        
+        function moveOptionsFromSelects(selectToRemove, selectToAdd){
+            var selectDiv = document.addPlantonistForm[selectToRemove];
+            for(i=0;i<selectDiv.options.length;i++){
+                if(selectDiv[i].selected){
+                    addOption(document.addPlantonistForm[selectToAdd], selectDiv[i].text, selectDiv[i].value)
+                    removeOption(selectDiv, i)
+                }
+            }
+        }
+        
+        
+        function addOption(selectbox,text,value )
+        
+        { var optn = document.createElement("OPTION");
+        
+        optn.text = text;
+        
+        optn.value = value;
+        
+        selectbox.options.add(optn);
+        
+        }
+        
+        function removeOption(selectbox, i)
+        {
+        
+            selectbox.remove(i);
+            
+        }
+    </script>
+
+</head>
+{% extends 'indexEdit.html' %}
+{%block body %}
+    <h1 id="header">{{ team }}</h1>
+        <div id="cadastroEscalation">
+            <div class="cadastroFormEscalation">
+                <div class="leftListHeader">Plantonistas fora da escala</div>
+                <div class="rightListHeader">Plantonistas na escala</div>
+                <form id="escalaForm" name="addPlantonistForm">
+                    <select id="notInEscala" name="notInEscala" multiple="multiple">
+                        {% for plantonist in notInEscala %}
+                            <option value="{{plantonist['idplantonista']}}">{{plantonist['nome']}}, {{plantonist['telefone']}}, {{plantonist['email']}}</option>
+                        {% endfor %}
+                    </select>
+                    <button class="buttons" id="buttonMove" onclick="moveOptionsFromSelects('notInEscala', 'inEscala')" ;="" type="button">Mover <img src="/static/img/arrow-white.png" alt="arrow-white-right" class="img-arrow"> </button>
+                    <button class="buttons" id="buttonMove2" onclick="moveOptionsFromSelects('inEscala', 'notInEscala')" ;="" type="button"><img src="/static/img/arrow-white.png" alt="arrow-white-left" class="img-arrow2"> Mover</button>
+                    <select id="inEscala" name="inEscala" multiple="multiple">
+                        {%for plantonist in inEscala %}
+                            <option data-priority="0" class="optiontest" id="optiontest" value="{{plantonist['idplantonista']}}">{{plantonist['nome_plantonista']}}, {{plantonist['telefone']}}, {{plantonist['email']}}</option>
+                        {% endfor %}
+                    </select>
+                    <button class="buttons" id="btnUserMoveUp" onclick="moveUp()" type="button"><img src="/static/img/arrow-white.png" alt="arrow-white-left" class="img-arrow-up"> Mover</button>
+                    <button class="buttons" id="btnUserMoveDown" onclick="moveDown()" type="button"><img src="/static/img/arrow-white.png" alt="arrow-white-left" class="img-arrow-down"> Mover</button>
+                </form>
+                
+                <button class="buttons" id="saveButton" onclick="saveOption(); ">Salvar</button>
+
+            </div>
+        </div>
+
+{%endblock %}
+</html>

@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/buttons.css') }}">
+    <title>AddPlantonista</title>
+</head>
+{% extends 'indexEdit.html' %}
+{%block body %}
+
+    <div id="cadastro">
+        <div id="cadastroForm">
+            <div id="tittleAdd">
+                <p>CADASTRO DE PLANTONISTAS</p>
+            </div>
+            {% if blockToShow == 'Erro' %}
+            <div><h2 class="errorAlerts error-text"> Plantonista não cadastrado. </h2></div>
+            {% elif blockToShow == 'Sucesso' %}
+            <div><h2 class="successAlerts success-text"> Plantonista cadastrado com sucesso! </h2></div>
+            {% endif %}
+            
+            
+            <div id="form-cadastros">
+                <div class="form-content">
+                    <form action="/add/plantonista", method="post">
+                        <label for="team">Equipe:</label>
+                        <select name="team" id="teamname">
+                            <option value="select" selected disabled>Selecione uma equipe</option>
+                            {% for team in allTeams %}
+                                <option value="{{team[0]}}">{{team[1]}}</option>
+                            {% endfor %}
+                        </select><br>
+                            <label for="name">Nome:</label>
+                            <input class="addplantonistainput1" type="text" id="name" name="name" placeholder="Nome do plantonista" required><br>
+                            
+                            <label for="email">E-mail:</label>
+                            <input class="addplantonistainput2" type="email" id="email" name="email" placeholder="E-mail do plantonista" required><br>
+                            
+                            <label for="cellphone">Celular:</label>
+                            <input class="addplantonistainput3" type="text" id="cellphone" name="cellphone" placeholder="Apenas os digitos" pattern="[0-9]{11}" title="DDD+número (apenas digitos)" required><br>
+                        <input class="buttons" id="cadastrarPlantonista" type="submit" value="Cadastrar" />
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+{%endblock %}
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <title>{{team}}</title>
+</head>
+{% extends 'index.html' %}
+{% block body %}
+    <h1 id="header">{{ team }}</h1>
+    <div style="margin:20px">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <table>
+            <thead>
+                <tr>
+                    <td style="border-top-left-radius: 10px;">Nome</td>
+                    <td>Telefone</td>
+                    <td style="border-top-right-radius: 10px;">Email</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for plantonist in inEscala %}
+                <tr>
+                <td class="colName"><p>{{plantonist['nome_plantonista']}}</p></td> 
+                    <td class="colTel">
+                        ({{plantonist['telefone'][0:2]}}){{plantonist['telefone'][2:7]}}-{{plantonist['telefone'][7:]}}
+                    </td> 
+                    <td class="colEmail">{{plantonist['email']}}</td>
+                {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+<script>
+$(document).ready(function()
+    {
+      $("tr:odd").css({
+        "background-color":"#000",
+        "color":"#fff"});
+    });
+    </script>
+</html>
+

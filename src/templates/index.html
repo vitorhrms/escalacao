@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Main</title>
+
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dropdown.css') }}">
+
+</head>
+
+<body>
+    <div id="container">
+        <nav>
+            <ul class="menu">
+                <a href="{{ url_for('index') }}">
+                    <img id="Logo" src="/static/img/logo.png" alt="logo">
+                </a>
+                <li id="masterMenu"><a href="#">Escalas</a>
+                    <ul>
+                        {% for team in allTeams %}
+                        <li><a href="{{url_for('escala.getEscalation', teamID=team[0])}}"> {{team[1]}} </a></li>
+                        {% endfor %}
+                    </ul>        
+                </li>
+            </ul>
+        </nav>
+    </div>
+    {%block body %}{%endblock%}
+</body>
+</html>
